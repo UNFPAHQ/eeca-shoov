@@ -1,0 +1,8 @@
+before_script:
+  - set -e
+  - cd ./visual-monitor
+  - npm install
+
+script:
+  - PROVIDER_PREFIX=browserstack SELECTED_CAPS=chrome mocha
+  - PROVIDER_PREFIX=browserstack SELECTED_CAPS=ie11 mocha

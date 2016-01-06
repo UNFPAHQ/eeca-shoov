@@ -72,6 +72,7 @@ describe('Visual monitor testing', function() {
             // Carousel.
             '.carousel',
             '.slider-for',
+            '.slick-list',
             // Articles.
             '.pane-views img',
             // Videos.

@@ -1,0 +1,10 @@
+{
+  "name": "Behat tests for UNFPA - eeca site",
+  "description": "Functional testing for http://eeca.unfpa.org/.",
+  "require": {
+    "drupal/drupal-extension": "~3.0"
+  },
+  "config": {
+    "bin-dir": "bin/"
+  }
+}

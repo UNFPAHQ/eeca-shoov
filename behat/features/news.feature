@@ -4,15 +4,6 @@ Feature:
   We need to be able to have access to the news page
 
   @api
-  Scenario: Check that we get a default set of articles that appear on the page.
-    Given I am an anonymous user
-    When  I visit the "news" page
-    Then  I should see text:
-      | Youth advocates take on child marriage, gender inequality in Albania |
-      | UNFPA Executive Director visits Turkmenistan                         |
-      | Y-Peer Moldova brings sexual health education to vulnerable youth    |
-
-  @api
   Scenario: Check the articles filters.
     Given I am an anonymous user
     When  I visit the "news" page

@@ -1,7 +1,7 @@
 default:
   extensions:
     Behat\MinkExtension:
-      base_url: "http://localhost/eeca"
+      base_url: "http://eeca.unfpa.org"
     Drupal\DrupalExtension:
       drupal:
         drupal_root: "/var/www/html/eeca"

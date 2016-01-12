@@ -29,8 +29,6 @@ Feature: Homepage
       | sub menu            | Kyrgyz Republic                                                     |
       | sub menu            | Maternal Health                                                     |
       | sub menu            | Gender-biased Sex Selection                                         |
-      | news                | Giving voice to vulnerable girls in Albania                         |
-      | news                | Meeting basic health needs for pregnant women on the move           |
       | news                | More News                                                           |
       | publications        | Addressing the Needs of Women and Girls in Humanitarian Emergencies |
       | publications        | State of World Population 2015                                      |

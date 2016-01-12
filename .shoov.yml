@@ -1,8 +1,22 @@
 before_script:
+  # Exit one errors.
   - set -e
+
+  # Install webdriverCSS
   - cd ./visual-monitor
   - npm install
+  - cd ..
+
+  - cd ./behat
+  - cp behat.local.yml.example behat.local.yml
+  - composer install
+  - cd ..
 
 script:
-  - PROVIDER_PREFIX=browserstack SELECTED_CAPS=chrome mocha
+  - cd ./visual-monitor
   - PROVIDER_PREFIX=browserstack SELECTED_CAPS=ie11 mocha
+  - PROVIDER_PREFIX=browserstack SELECTED_CAPS=chrome mocha
+  - cd ..
+
+  - cd ./behat
+  - ./bin/behat

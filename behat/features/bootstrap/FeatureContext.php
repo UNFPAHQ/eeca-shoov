@@ -1,12 +1,20 @@
 <?php
 
-use Drupal\DrupalExtension\Context\DrupalContext;
+use Drupal\DrupalExtension\Context\MinkContext;
 use Behat\Behat\Context\SnippetAcceptingContext;
+use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use GuzzleHttp\Client;
+use Behat\Behat\Tester\Exception\PendingException;
 
-class FeatureContext extends DrupalContext implements SnippetAcceptingContext {
+class FeatureContext extends MinkContext implements SnippetAcceptingContext {
 
+  /**
+   * @Given I am an anonymous user
+   */
+  public function iAmAnAnonymousUser() {
+    // Just let this pass-through.
+  }
 
   /**
    * @When /^I visit the homepage$/
@@ -109,8 +117,7 @@ class FeatureContext extends DrupalContext implements SnippetAcceptingContext {
 
     // In case we have no links.
     if (!$link) {
-      $variables = array('@section' => $section, '@link' => $link_text);
-      throw new \Exception(format_string("The link: '@link' was not found on section: '@section'", $variables));
+      throw new \Exception("The link: " . $link_text . " was not found on section: " . $section);
     }
     return $link;
   }
@@ -136,13 +143,7 @@ class FeatureContext extends DrupalContext implements SnippetAcceptingContext {
     $code = $this->getSession()->getStatusCode();
     // In case the link url doesn't return a status code of '200'.
     if ($code != '200')  {
-      $variables = array(
-        '@code' => $code,
-        '@url' => $url,
-        '@section' => $section,
-      );
-      $message = "The page code is '@code' it expects it to be '200' (from url: @url at section: @section)";
-      throw new \Exception(format_string($message, $variables));
+      throw new \Exception("The page code is ' . $code . ' it expects it to be '200' (from url: ' . $url . ' at section: ' . $section)");
     }
   }
 
@@ -161,11 +162,7 @@ class FeatureContext extends DrupalContext implements SnippetAcceptingContext {
       // In case the target element is not found.
       $element = $page->find('css', $filter);
       if (!$element) {
-        $variables = array(
-          '@name' => $filter_name,
-          '@id' => $filter,
-        );
-        throw new \Exception(format_string("The '@name' filter field with id: '@id' was not found", $variables));
+        throw new \Exception("The ' . $filter_name . ' filter field with id: ' . $filter . ' was not found");
       }
       $this->setElementValue($element, $filter_value);
     }
@@ -179,7 +176,7 @@ class FeatureContext extends DrupalContext implements SnippetAcceptingContext {
     foreach ($table->getRows() as $titles) {
       foreach ($titles as $title) {
         if (strpos($this->getSession()->getPage()->getText(), $title) === FALSE) {
-          throw new \Exception(format_string("Can't find the text '@title' on the page: @url", array('@title' => $title, '@url' => $this->getSession()->getCurrentUrl())));
+          throw new \Exception("Can't find the text " . $title . " on the page: " . $this->getSession()->getCurrentUrl());
         }
       }
     }
@@ -213,11 +210,7 @@ class FeatureContext extends DrupalContext implements SnippetAcceptingContext {
         $element_is_set = FALSE;
     }
     if (!$element_is_set) {
-      $variables = array(
-        '@xpath' => $element->getXpath(),
-        '@value' =>$value,
-      );
-      throw new \Exception(format_string("The element: '@xpath' was not set with the value: '@value'", $variables));
+      throw new \Exception("The element: " . $element->getXpath() . " was not set with the value: " . $value);
     }
     return $element_is_set;
   }
@@ -238,11 +231,7 @@ class FeatureContext extends DrupalContext implements SnippetAcceptingContext {
     catch (GuzzleHttp\Exception\ClientException $e) {
       $status_code = $e->getResponse()->getStatusCode();
       if ($status_code != 200) {
-        $variables = array (
-          '@status_code' => $status_code,
-          '@file_path' => $file_path,
-        );
-        throw new \Exception(format_string("Expected status code of '200' but returned status code of: '@status_code' for file: '@file_path' ", $variables));
+        throw new \Exception("Expected status code of '200' but returned status code of: " . $status_code . " for file: " .$file_path);
       }
     }
   }
@@ -255,7 +244,7 @@ class FeatureContext extends DrupalContext implements SnippetAcceptingContext {
 
     // In case we can't find a download link.
     if (!$download_link = $page->find('xpath', '//span[@class="file"]//a')) {
-      throw new \Exception(format_string("Download link for PDF file were not found on this page: @url", array('@url' => $this->getSession()->getCurrentUrl())));
+      throw new \Exception("Download link for PDF file were not found on this page: " .$this->getSession()->getCurrentUrl());
     }
 
     $this->ValidateDownloadLink($download_link);
@@ -271,7 +260,7 @@ class FeatureContext extends DrupalContext implements SnippetAcceptingContext {
       // In case we can't find a download link.
 
       if (!$download_link = $page->find('xpath', '//div[@class="maincontent"]//a[contains(@href, ' . array_shift($country) . ')]')) {
-        throw new \Exception(format_string("Download link for '@country' were not found on this page: @url", array('@country' => $country[0], '@url' => $this->getSession()->getCurrentUrl())));
+        throw new \Exception("Download link for " . $country[0] . " were not found on this page: " . $this->getSession()->getCurrentUrl());
       }
 
       $this->ValidateDownloadLink($download_link);
@@ -290,8 +279,144 @@ class FeatureContext extends DrupalContext implements SnippetAcceptingContext {
   public function inLanguageList($language) {
     // The link text can only contain any language name
     //(e.g. English | Arabic etc...).
-    if (!in_array($language, locale_language_list('name', TRUE))) {
-      throw new \Exception(format_string("The language '@language' was not found in the language list", array('@language' => $language)));
+    $language_list = array(
+       'English' ,
+       'Afar' ,
+       'Abkhazian' ,
+       'Afrikaans' ,
+       'Amharic' ,
+       'Arabic' ,
+       'Assamese' ,
+       'Aymara' ,
+       'Azerbaijani' ,
+       'Bashkir' ,
+       'Byelorussian' ,
+       'Bulgarian' ,
+       'Bihari' ,
+       'Bislama' ,
+       'Bengali/Bangla' ,
+       'Tibetan' ,
+       'Breton' ,
+       'Catalan' ,
+       'Corsican' ,
+       'Czech' ,
+       'Welsh' ,
+       'Danish' ,
+       'German' ,
+       'Bhutani' ,
+       'Greek' ,
+       'Esperanto' ,
+       'Spanish' ,
+       'Estonian' ,
+       'Basque' ,
+       'Persian' ,
+       'Finnish' ,
+       'Fiji' ,
+       'Faeroese' ,
+       'French' ,
+       'Frisian' ,
+       'Irish' ,
+       'Scots/Gaelic' ,
+       'Galician' ,
+       'Guarani' ,
+       'Gujarati' ,
+       'Hausa' ,
+       'Hindi' ,
+       'Croatian' ,
+       'Hungarian' ,
+       'Armenian' ,
+       'Interlingua' ,
+       'Interlingue' ,
+       'Inupiak' ,
+       'Indonesian' ,
+       'Icelandic' ,
+       'Italian' ,
+       'Hebrew' ,
+       'Japanese' ,
+       'Yiddish' ,
+       'Javanese' ,
+       'Georgian' ,
+       'Kazakh' ,
+       'Greenlandic' ,
+       'Cambodian' ,
+       'Kannada' ,
+       'Korean' ,
+       'Kashmiri' ,
+       'Kurdish' ,
+       'Kirghiz' ,
+       'Latin' ,
+       'Laothian' ,
+       'Lithuanian' ,
+       'Latvian/Lettish' ,
+       'Malagasy' ,
+       'Maori' ,
+       'Macedonian' ,
+       'Malayalam' ,
+       'Mongolian' ,
+       'Moldavian' ,
+       'Marathi' ,
+       'Malay' ,
+       'Maltese' ,
+       'Burmese' ,
+       'Nauru' ,
+       'Nepali' ,
+       'Dutch' ,
+       'Norwegian' ,
+       'Occitan' ,
+       '(Afan)/Oromoor/Oriya' ,
+       'Punjabi' ,
+       'Polish' ,
+       'Pashto/Pushto' ,
+       'Portuguese' ,
+       'Quechua' ,
+       'Rhaeto-Romance' ,
+       'Kirundi' ,
+       'Romanian' ,
+       'Russian' ,
+       'Kinyarwanda' ,
+       'Sanskrit' ,
+       'Sindhi' ,
+       'Sangro' ,
+       'Serbo-Croatian' ,
+       'Singhalese' ,
+       'Slovak' ,
+       'Slovenian' ,
+       'Samoan' ,
+       'Shona' ,
+       'Somali' ,
+       'Albanian' ,
+       'Serbian' ,
+       'Siswati' ,
+       'Sesotho' ,
+       'Sundanese' ,
+       'Swedish' ,
+       'Swahili' ,
+       'Tamil' ,
+       'Tegulu' ,
+       'Tajik' ,
+       'Thai' ,
+       'Tigrinya' ,
+       'Turkmen' ,
+       'Tagalog' ,
+       'Setswana' ,
+       'Tonga' ,
+       'Turkish' ,
+       'Tsonga' ,
+       'Tatar' ,
+       'Twi' ,
+       'Ukrainian' ,
+       'Urdu' ,
+       'Uzbek' ,
+       'Vietnamese' ,
+       'Volapuk' ,
+       'Wolof' ,
+       'Xhosa' ,
+       'Yoruba' ,
+       'Chinese' ,
+       'Zulu' ,
+    );
+    if (!in_array($language, $language_list)) {
+      throw new \Exception("The language " . $language . " was not found in the language list");
 
     }
     return TRUE;
@@ -305,7 +430,7 @@ class FeatureContext extends DrupalContext implements SnippetAcceptingContext {
 
     // In case we can't find a download link.
     if (!$download_links = $page->findAll('css', '.downButtons a')) {
-      throw new \Exception(format_string("Download links were not found on this page: @url", array('@url' => $this->getSession()->getCurrentUrl())));
+      throw new \Exception("Download links were not found on this page: " . $this->getSession()->getCurrentUrl());
     }
 
     // Download the files each link.

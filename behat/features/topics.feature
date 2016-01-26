@@ -21,5 +21,4 @@ Feature:
 
     Examples:
       | section                    | article text                                                        |
-      | Related Publications pager | Preventing Cervical Cancer in Eastern Europe and Central Asia       |
       | Related News pager         | Coordinating efforts to reduce maternal, infant and child mortality |

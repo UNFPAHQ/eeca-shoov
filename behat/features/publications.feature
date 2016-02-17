@@ -10,7 +10,6 @@ Feature:
     Then  I should see text:
       | State of World Population 2015                                                 |
       | Ukraine Humanitarian Newsletter, Issue 2                                       |
-      | Combatting Violence Against Women and Girls in Eastern Europe and Central Asia |
 
   @api
   Scenario: Check the articles filters.

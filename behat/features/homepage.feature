@@ -31,7 +31,6 @@ Feature: Homepage
       | sub menu            | Gender-biased Sex Selection                                         |
       | news                | More News                                                           |
       | publications        | Addressing the Needs of Women and Girls in Humanitarian Emergencies |
-      | publications        | State of World Population 2015                                      |
       | publications        | More Publications                                                   |
       | videos              | Sustainable Development Goals explained: Good health and well-being |
       | videos              | More Videos                                                         |

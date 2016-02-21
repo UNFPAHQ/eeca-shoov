@@ -94,6 +94,7 @@ describe('Visual monitor testing', function() {
             // Events
             '.view-vw-events .view-empty p',
             '.pane-vw-events .pane-content',
+            '.view-empty'
           ],
         screenWidth: selectedCaps == 'chrome' ? [640, 960, 1200] : undefined,
       }, resultsCallback)

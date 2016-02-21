@@ -11,7 +11,6 @@ Feature:
     Then  I should see text:
       | Administrative Assistant |
       | Programme Assistant      |
-      | Local consultant         |
 
   @api
   Scenario Outline: Check the articles filters.
@@ -24,4 +23,3 @@ Feature:
       | titles                   |
       | Administrative Assistant |
       | Programme Assistant      |
-      | Local consultant         |

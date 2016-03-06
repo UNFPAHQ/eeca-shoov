@@ -4,15 +4,6 @@ Feature:
   We need to be able to have access to the Vacancies page
 
   @api
-  Scenario: Check that we get a default set of articles that appear on
-  the page when we have no filters.
-    Given I am an anonymous user
-    When  I visit the "vacancies" page
-    Then  I should see text:
-      | Administrative Assistant |
-      | Programme Assistant      |
-
-  @api
   Scenario Outline: Check the articles filters.
     Given I am an anonymous user
     When  I visit the "vacancies" page
@@ -22,4 +13,3 @@ Feature:
     Examples:
       | titles                   |
       | Administrative Assistant |
-      | Programme Assistant      |

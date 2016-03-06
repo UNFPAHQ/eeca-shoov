@@ -30,7 +30,6 @@ Feature: Homepage
       | sub menu            | Maternal Health                                                     |
       | sub menu            | Gender-biased Sex Selection                                         |
       | news                | More News                                                           |
-      | publications        | Addressing the Needs of Women and Girls in Humanitarian Emergencies |
       | publications        | More Publications                                                   |
       | videos              | Sustainable Development Goals explained: Good health and well-being |
       | videos              | More Videos                                                         |

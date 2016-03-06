@@ -4,15 +4,6 @@ Feature:
   We need to be able to have access to the we work page
 
   @api
-  Scenario: Check that we get a default text appear on the page.
-    Given I am an anonymous user
-    When  I visit the "where-we-work" page
-    Then  I should see text:
-      | Where We Work             |
-      | Republic of Moldova       |
-      | TFY Republic of Macedonia |
-
-  @api
   Scenario Outline: Check the links.
     Given I am an anonymous user
     When  I visit the "where-we-work" page

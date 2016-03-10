@@ -77,17 +77,25 @@ describe('Visual monitor testing', function() {
             // Articles.
             '.pane-views img',
             // Videos.
-            '.views-field-field-video'
+            '.views-field-field-video',
+            '.view-vw-video .views-row',
+            // Publication.
+            '.pub-image'
           ],
         remove:
           [
+            // Newa
+            '#block-views-vw-news-block-home-news',
             // Articles.
             '.pane-views .title',
             '.news-body p',
             '.summary p',
             // Videos title.
             '.views-field-title a',
-            '.views-field-title span'
+            '.views-field-title span',
+            // Publication
+            '.region-center-right #block-views-7b86692f8627a684fe415812a0bdf8b4 .title',
+            '.region-center-right #block-views-7b86692f8627a684fe415812a0bdf8b4 .summary',
           ],
         hide:
           [

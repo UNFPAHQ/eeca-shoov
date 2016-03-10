@@ -29,10 +29,6 @@ Feature: Homepage
       | sub menu            | Kyrgyz Republic                                                     |
       | sub menu            | Maternal Health                                                     |
       | sub menu            | Gender-biased Sex Selection                                         |
-      | news                | More News                                                           |
-      | publications        | More Publications                                                   |
-      | videos              | Sustainable Development Goals explained: Good health and well-being |
-      | videos              | More Videos                                                         |
       | stay connected      | Facebook                                                            |
       | stay connected      | Twitter                                                             |
       | stay connected      | Youtube                                                             |

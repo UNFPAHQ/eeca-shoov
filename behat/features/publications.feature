@@ -32,4 +32,3 @@ Feature:
       | publication title                        |
       | State of World Population 2015           |
       | Ukraine Humanitarian Newsletter, Issue 2 |
-      | Sexuality Education: What Is Its Impact? |

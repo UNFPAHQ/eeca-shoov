@@ -88,7 +88,7 @@ class FeatureContext extends MinkContext implements SnippetAcceptingContext {
         break;
 
       case 'stay connected':
-        $link = $page->find('xpath', '//div[contains(@class, "stay_connected")]//a[contains(., "' . $link_text .'")]');
+        $link = $page->find('xpath', '//div[contains(@class, "side_boxes")]//a[contains(., "' . $link_text .'")]');
         break;
 
       case 'footer':

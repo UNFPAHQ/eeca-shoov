@@ -100,6 +100,7 @@ describe('Visual monitor testing', function() {
         hide:
           [
             // Events
+            '#block-custom-custom-home-event-block .content',
             '.view-vw-events .view-empty p',
             '.pane-vw-events .pane-content',
             '.view-empty'

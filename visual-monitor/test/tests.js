@@ -65,7 +65,7 @@ describe('Visual monitor testing', function() {
   it('should show the home page',function(done) {
     client
       .url(baseUrl)
-      .pause(2000)
+      .pause(10000)
       .webdrivercss(testName + '.homepage', {
         name: '1',
         exclude:
@@ -110,70 +110,70 @@ describe('Visual monitor testing', function() {
       .call(done);
   });
 
-  it('should show the topics page',function(done) {
-    client
-      .url(baseUrl + '/topics/maternal-health')
-      .webdrivercss(testName + '.topics', {
-        name: '1',
-        exclude:
-          [
-            // Related article.
-            '.view-vw-related-topics-terms img'
-          ],
-        remove:
-          [
-            // Related article.
-            '.view-vw-related-topics-terms .description'
-          ],
-        hide: [],
-        screenWidth: selectedCaps == 'chrome' ? [640, 960, 1200] : undefined,
-      }, resultsCallback)
-      .call(done);
-  });
-
-  it('should show the news page',function(done) {
-    client
-      .url(baseUrl + '/news')
-      .webdrivercss(testName + '.news', {
-        name: '1',
-        exclude:
-          [
-            // News image.
-            '.view-content img'
-          ],
-        remove:
-          [
-            // News date.
-            '.view-content .left',
-            // News title and summery.
-            '.view-content .right'
-          ],
-        hide: [],
-        screenWidth: selectedCaps == 'chrome' ? [640, 960, 1200] : undefined,
-      }, resultsCallback)
-      .call(done);
-  });
-
-  it('should show the news article page',function(done) {
-    client
-      .url(baseUrl + '/news/y-peer-moldova-brings-sexual-health-education-vulnerable-youth')
-      .webdrivercss(testName + '.news-article', {
-        name: '1',
-        exclude:
-          [
-            // Related article.
-            '.view-vw-custom-related-views img',
-          ],
-        remove:
-          [
-            // Related article.
-            '.view-vw-custom-related-views .description',
-            // Social icons counters.
-            '.stBubble',
-          ],
-        hide: [],
-        screenWidth: selectedCaps == 'chrome' ? [640, 960, 1200] : undefined,
-      }, resultsCallback)
-      .call(done);
-  });
+  // it('should show the topics page',function(done) {
+  //   client
+  //     .url(baseUrl + '/topics/maternal-health')
+  //     .webdrivercss(testName + '.topics', {
+  //       name: '1',
+  //       exclude:
+  //         [
+  //           // Related article.
+  //           '.view-vw-related-topics-terms img'
+  //         ],
+  //       remove:
+  //         [
+  //           // Related article.
+  //           '.view-vw-related-topics-terms .description'
+  //         ],
+  //       hide: [],
+  //       screenWidth: selectedCaps == 'chrome' ? [640, 960, 1200] : undefined,
+  //     }, resultsCallback)
+  //     .call(done);
+  // });
+  //
+  // it('should show the news page',function(done) {
+  //   client
+  //     .url(baseUrl + '/news')
+  //     .webdrivercss(testName + '.news', {
+  //       name: '1',
+  //       exclude:
+  //         [
+  //           // News image.
+  //           '.view-content img'
+  //         ],
+  //       remove:
+  //         [
+  //           // News date.
+  //           '.view-content .left',
+  //           // News title and summery.
+  //           '.view-content .right'
+  //         ],
+  //       hide: [],
+  //       screenWidth: selectedCaps == 'chrome' ? [640, 960, 1200] : undefined,
+  //     }, resultsCallback)
+  //     .call(done);
+  // });
+  //
+  // it('should show the news article page',function(done) {
+  //   client
+  //     .url(baseUrl + '/news/y-peer-moldova-brings-sexual-health-education-vulnerable-youth')
+  //     .webdrivercss(testName + '.news-article', {
+  //       name: '1',
+  //       exclude:
+  //         [
+  //           // Related article.
+  //           '.view-vw-custom-related-views img',
+  //         ],
+  //       remove:
+  //         [
+  //           // Related article.
+  //           '.view-vw-custom-related-views .description',
+  //           // Social icons counters.
+  //           '.stBubble',
+  //         ],
+  //       hide: [],
+  //       screenWidth: selectedCaps == 'chrome' ? [640, 960, 1200] : undefined,
+  //     }, resultsCallback)
+  //     .call(done);
+  // });
 });

@@ -13,7 +13,6 @@ Feature:
     Examples:
       | country      | title               |
       | Albania      | UNFPA Albania       |
-      | Kazakhstan   | UNFPA IN KAZAKHSTAN |
 
   @api
   Scenario: Downloading files in all languages

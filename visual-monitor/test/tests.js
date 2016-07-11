@@ -65,7 +65,7 @@ describe('Visual monitor testing', function() {
   it('should show the home page',function(done) {
     client
       .url(baseUrl)
-      .pause(25000)
+      .pause(25001)
       .webdrivercss(testName + '.homepage', {
         name: '1',
         exclude:
@@ -96,6 +96,8 @@ describe('Visual monitor testing', function() {
             // Publication
             '.region-center-right #block-views-7b86692f8627a684fe415812a0bdf8b4 .title',
             '.region-center-right #block-views-7b86692f8627a684fe415812a0bdf8b4 .summary',
+            // vacancies
+            '#block-views-7a6059f127dd3b74a2fad54b36a9e200 .content'
           ],
         hide:
           [
